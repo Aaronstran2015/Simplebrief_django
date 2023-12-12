@@ -1,0 +1,24 @@
+{% extends 'template.html' %}
+
+
+{% block title %}
+    Simplebrief | TAF
+{% endblock %}
+
+
+{% block content %}
+    <h1>TAF</h1>
+
+    <form action="{% url 'taf' %}" method="POST">
+
+        
+        {% csrf_token %}    
+
+        <input type="search" placeholder="Enter ICAO code" name="icaoID" id="icaoID">
+        <input type="submit" for="icaoID" value="Search">
+
+    </form>
+
+    {{ taf|linebreaksbr|safe}}
+
+{% endblock %}

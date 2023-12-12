@@ -1,0 +1,69 @@
+{% extends 'template.html' %}
+
+
+{% block title %}
+    Simplebrief | Brief
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Simplebrief</h1>
+
+<form action="{% url 'brief' %}" method="POST">
+
+    {% csrf_token %}
+
+    <input type="search" name="dep" id="dep" placeholder="Departure ICAO code">
+    <input type="search" name="arr" id="arr" placeholder="Arrival ICAO code">
+    <input type="submit" value="Search">
+
+</form>
+
+<div id="brief_map">
+    {{ map_html|safe }}
+</div>
+
+<h1>{{airports}}</h1>
+<div class='data-blocks' id="airport_1">
+    <h3>{{departure}}</h3>
+    {{a1_icao}} <br>
+    {{a1_name}} <br>
+    {{a1_country}} <br>
+    {{a1_latitude}} <br>
+    {{a1_longitude}} <br>
+    {{a1_elevation}} <br>
+</div>
+<div class='data-blocks' id="airport_2">
+    <h3>{{arrival}}</h3>
+    {{a2_icao}} <br>
+    {{a2_name}} <br>
+    {{a2_country}} <br>
+    {{a2_latitude}} <br>
+    {{a2_longitude}} <br>
+    {{a2_elevation}} <br>
+</div>
+
+<h1>{{metar}}</h1>
+
+<div class='data-blocks' id="metar_1">
+    {{departure_metar|linebreaksbr|safe}}<br>
+</div>
+<div class='data-blocks' id="metar_2">
+    {{arrival_metar|linebreaksbr|safe}}<br>
+</div>
+
+<h1>{{taf}}</h1>
+
+<div class="data-blocks" id="taf_1">
+    {{departure_taf|linebreaksbr|safe}}
+</div>
+
+<div class="data-blocks" id="taf_2">
+    {{arrival_taf|linebreaksbr|safe}}
+</div>
+
+<h1>{{notams}}</h1>
+
+<h1>{{airport_diagrams}}</h1>
+{% endblock %}

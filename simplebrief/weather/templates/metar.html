@@ -1,0 +1,23 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Simplebrief | METAR
+{% endblock %}
+
+{% block content %}
+    <h1>METAR</h1>
+
+    <form action="{% url 'metar' %}" method="POST">
+
+        
+        {% csrf_token %}    
+
+        <input type="search" placeholder="Enter ICAO code" name="icaoID" id="icaoID">
+        <input type="submit" for="icaoID" value="Search">
+
+    </form>
+
+
+    {{ metar|linebreaksbr|safe }}
+    {{ error }}
+{% endblock %}
